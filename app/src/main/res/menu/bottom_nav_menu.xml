@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_baseline_bar_chart_24"
+        android:title="@string/title_dashboard" />
+
+    <item
+        android:id="@+id/navigation_active"
+        android:icon="@drawable/ic_baseline_downloading_24"
+        android:title="@string/title_active" />
+
+    <item
+        android:id="@+id/done_navigation"
+        android:icon="@drawable/ic_baseline_download_for_offline_24"
+        android:title="@string/title_done" />
+
+    <item
+        android:id="@+id/navigation_failed"
+        android:icon="@drawable/ic_baseline_error_outline_48"
+        android:title="@string/title_failed" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/ic_baseline_settings_24"
+        android:title="@string/title_settings" />
+
+</menu>
