@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- DashboardViewModel added as a variable-->
+        <variable
+            name="viewModel"
+            type="io.raveerocks.downloadmanager.ui.dashboard.DashboardViewModel" />
+    </data>
+
+    <!-- Linear Layout is holding the Fragment -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:baselineAligned="false"
+        tools:context=".ui.details.fragments.DashboardFragment">
+
+        <!-- DownloadStatusBarChartView holder -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight=".50">
+            <TextView
+                android:id="@+id/label_download_stats"
+                style="@style/style_dashboard_item_label"
+                android:text="@string/title_download_stats"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <!-- DownloadStatusPieChartView -->
+            <io.raveerocks.downloadmanager.core.views.custom.DownloadStatusPieChartView
+                app:isVisible="@{viewModel.showDownloadStats}"
+                android:id="@+id/download_status_pie"
+                style="@style/Theme.DashBoard.PieChart.DownloadChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                app:status="@{viewModel.countByStatus}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/label_download_stats"/>
+
+
+            <!-- Placeholder for empty downloads -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/no_downloads_container_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isVisible="@{!viewModel.showDownloadStats}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/label_download_stats">
+
+                <TextView
+                    android:id="@+id/no_downloads"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/message_no_downloads_found"
+                    app:drawableBottomCompat="@drawable/ic_baseline_youtube_searched_for_48"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- MediaDistributionPieChartView holder -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight=".50">
+            <TextView
+                android:id="@+id/label_media_stats"
+                style="@style/style_dashboard_item_label"
+                android:text="@string/title_media_stats"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+            <!-- MediaDistributionPieChartView holder -->
+            <io.raveerocks.downloadmanager.core.views.custom.MediaDistributionPieChartView
+                app:isVisible="@{viewModel.showMediaStats}"
+                android:id="@+id/media_status_pie"
+                style="@style/Theme.DashBoard.PieChart.MediaChart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="8dp"
+                app:distribution="@{viewModel.sizeByMediaType}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/label_media_stats"/>
+
+            <!-- Placeholder for empty downloads -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/no_downloads_media_container_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isVisible="@{!viewModel.showMediaStats}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/label_media_stats">
+                <TextView
+                    android:id="@+id/no_media_downloads"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/message_no_downloads_found"
+                    app:drawableBottomCompat="@drawable/ic_baseline_youtube_searched_for_48"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

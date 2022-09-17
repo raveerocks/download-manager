@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <!-- SettingsViewModel added as a variable-->
+        <variable
+            name="viewModel"
+            type="io.raveerocks.downloadmanager.ui.settings.SettingsViewModel" />
+
+        <!-- android.os.Build added as a variable-->
+        <import type="android.os.Build" />
+    </data>
+
+    <!-- ScrollView is holding the Fragment -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- LinearLayoutCompat is holding the settings -->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Download Setting label -->
+            <TextView
+                style="@style/style_dashboard_item_label"
+                android:text="@string/title_download_settings" />
+
+            <!-- Setting wifi Only-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/style_settings_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Setting wifi Only label -->
+                <TextView
+                    android:id="@+id/wifi_only_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_download_over_wi_fi_only"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Setting wifi Only switch -->
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/wifi_only_label_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.wifiOnly}"
+                    android:onCheckedChanged="@{(button,isChecked)-> viewModel.setIsWifiOnly(isChecked)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Setting roaming -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/style_settings_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Setting roaming label -->
+                <TextView
+                    android:id="@+id/roaming_allowed_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_allow_download_while_roaming"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Setting roaming switch -->
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/roaming_allowed_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.isAllowedWhileRoaming}"
+                    android:enabled="@{!viewModel.wifiOnly}"
+                    android:onCheckedChanged="@{(button,isChecked)-> viewModel.setIsAllowedWhileRoaming(isChecked)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Setting charging (Only available for OS>=N) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/style_settings_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isVisible="@{(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)}">
+
+                <!-- Setting charging label -->
+                <TextView
+                    android:id="@+id/charging_only_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_download_while_charging_only"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Setting charging  switch -->
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/charging_only_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.isAllowedWhileChargingOnly}"
+                    android:onCheckedChanged="@{(button,isChecked)-> viewModel.setIsAllowedWhileChargingOnly(isChecked)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Setting idle (Only available for OS>=N) -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/style_settings_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:isVisible="@{(Build.VERSION.SDK_INT >= Build.VERSION_CODES.N)}">
+
+                <!-- Setting idle label -->
+                <TextView
+                    android:id="@+id/idle_only_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_download_only_when_idle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Setting idle switch -->
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/idle_only_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.isAllowedWhileIdleOnly}"
+                    android:onCheckedChanged="@{(button,isChecked)-> viewModel.setIsAllowedWhileIdleOnly(isChecked)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- Setting public -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/style_settings_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Setting public label -->
+                <TextView
+                    android:id="@+id/store_public_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_make_downloads_public"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Setting public switch-->
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/store_public_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="@{viewModel.isDownloadPublic}"
+                    android:onCheckedChanged="@{(button,isChecked)-> viewModel.setIsDownloadPublic(isChecked)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- Dashboard Setting label -->
+            <TextView
+                style="@style/style_dashboard_item_label"
+                android:text="@string/title_dashboard_settings" />
+
+            <!-- Setting backup limit -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                style="@style/style_settings_row"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Setting backup limit label -->
+                <TextView
+                    android:id="@+id/backup_limit_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_limit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <!-- Setting backup limit slider -->
+                <com.google.android.material.slider.RangeSlider
+                    android:id="@+id/backup_limit_slider"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:stepSize="1"
+                    android:valueFrom="0"
+                    android:valueTo="30"
+                    android:values="@{viewModel.dashboardHistoryLimit}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/backup_limit_label"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Save button container -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Save button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/label_save"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <!-- Reset button container -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Reset button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/reset_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@string/label_reset"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </ScrollView>
+</layout>

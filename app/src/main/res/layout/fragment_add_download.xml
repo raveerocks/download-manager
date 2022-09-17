@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- AddDownloadViewModel added as a variable-->
+        <variable
+            name="viewModel"
+            type="io.raveerocks.downloadmanager.ui.add.AddDownloadViewModel" />
+    </data>
+
+    <!-- Frame Layout is holding the Fragment -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.common.fragments.DownloadDialogFragment">
+
+        <!-- ConstraintLayout Layout is holding the add form -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+            <!-- Title field holder -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/download_title_container_layout"
+                style="@style/style_field_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_title"
+                app:endIconMode="clear_text"
+                app:endIconTint="?attr/colorError"
+                app:helperText="@string/label_required"
+                app:layout_constraintBottom_toTopOf="@+id/download_url_container_layout">
+
+                <!-- Title field -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/download_title_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:inputType="textCapWords"
+                    android:text="@={viewModel.title}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- URL field holder -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/download_url_container_layout"
+                style="@style/style_field_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_url"
+                app:endIconMode="clear_text"
+                app:endIconTint="?attr/colorError"
+                app:helperText="@string/label_required"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <!-- URL field -->
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/download_url_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:inputType="textUri"
+                    android:text="@={viewModel.link}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/download_button"
+                style="@style/style_overlay_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/label_download"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/download_url_container_layout" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>

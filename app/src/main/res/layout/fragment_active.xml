@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- ConstraintLayout Layout is holding the Fragment -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_small"
+        tools:context=".ui.details.fragments.ActiveDownloadListFragment">
+
+        <!-- SwipeRefresh Layout holding ClockedRecyclerView -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/active_recycler_view_container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="parent">
+
+            <!-- ClockedRecyclerView containing DoneDownload entries ticks every second (500ms) -->
+            <io.raveerocks.downloadmanager.core.views.custom.ClockedRecyclerView
+                android:id="@+id/active_recycler_view"
+                style="@style/style_vertical_list"
+                app:tickInterval="500"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- Placeholder for empty downloads -->
+        <TextView
+            android:id="@+id/no_downloads"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/message_no_active_downloads"
+            android:visibility="gone"
+            app:drawableBottomCompat="@drawable/ic_baseline_auto_awesome_48"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

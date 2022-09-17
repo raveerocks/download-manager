@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- DoneDownload added as a variable-->
+        <variable
+            name="doneDownload"
+            type="io.raveerocks.downloadmanager.core.models.DoneDownload" />
+    </data>
+
+    <!-- TouchableMotion Layout holds the done download item-->
+    <io.raveerocks.downloadmanager.core.views.custom.TouchableMotionLayout
+        android:id="@+id/done_download_item_container_layout"
+        style="@style/style_vertical_list_item"
+        app:layoutDescription="@xml/layout_done_download_item_scene">
+
+        <!-- Logo representing media type -->
+        <ImageView
+            android:id="@+id/media_logo"
+            style="@style/style_item_logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:mimeType="@{doneDownload.mediaType}"
+            tools:src="@drawable/ic_baseline_library_music_48"
+            android:contentDescription="@string/description_media_logo" />
+
+        <!-- Done download title -->
+        <TextView
+            android:id="@+id/title"
+            style="@style/style_item_title"
+            android:text="@{doneDownload.title}"
+            app:layout_constraintStart_toEndOf="@+id/media_logo"
+            app:layout_constraintTop_toTopOf="@+id/media_logo"
+            tools:text="Title" />
+
+        <!-- Done download domain -->
+        <TextView
+            android:id="@+id/domain"
+            style="@style/style_item_domain"
+            app:downloadedFrom="@{doneDownload.domain}"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="Domain" />
+
+        <!-- Media file size -->
+        <TextView
+            android:id="@+id/size"
+            style="@style/style_item_size"
+            app:fileSize="@{doneDownload.totalSizeBytes}"
+            app:layout_constraintStart_toStartOf="@+id/domain"
+            app:layout_constraintTop_toBottomOf="@+id/domain"
+            tools:text="Size" />
+
+        <!-- Media file time of download -->
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:timeAgo="@{doneDownload.downloadedAtElapsed}"
+            tools:text="Date" />
+
+        <!-- Info button to view more details -->
+        <io.raveerocks.downloadmanager.core.views.custom.ClickableTextView
+            android:id="@+id/info_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:drawableTopCompat="@drawable/ic_baseline_info_24" />
+
+        <!-- Delete button to delete the download -->
+        <io.raveerocks.downloadmanager.core.views.custom.ClickableTextView
+            android:id="@+id/delete_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_delete"
+            app:drawableTopCompat="@drawable/ic_baseline_delete_48" />
+
+    </io.raveerocks.downloadmanager.core.views.custom.TouchableMotionLayout>
+
+</layout>

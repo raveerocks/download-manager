@@ -6,28 +6,39 @@
     app:startDestination="@+id/done_navigation">
 
     <fragment
-        android:id="@+id/navigation_dashboard"/>
+        android:id="@+id/navigation_dashboard"
+        android:name="io.raveerocks.downloadmanager.ui.dashboard.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_active"/>
+        android:id="@+id/navigation_active"
+        android:name="io.raveerocks.downloadmanager.ui.active.ActiveFragment"
+        tools:layout="@layout/fragment_active" />
 
     <fragment
-        android:id="@+id/navigation_failed"/>
+        android:id="@+id/navigation_failed"
+        android:name="io.raveerocks.downloadmanager.ui.failed.FailedFragment"
+        tools:layout="@layout/fragment_failed" />
 
     <fragment
-        android:id="@+id/navigation_settings"/>
+        android:id="@+id/navigation_settings"
+        android:name="io.raveerocks.downloadmanager.ui.settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
 
     <navigation
         android:id="@+id/done_navigation"
         app:startDestination="@id/navigation_done">
         <fragment
-            android:id="@+id/navigation_done">
+            android:id="@+id/navigation_done"
+            android:name="io.raveerocks.downloadmanager.ui.done.DoneFragment"
+            tools:layout="@layout/fragment_done">
             <action
                 android:id="@+id/action_navigation_done_to_doneDownloadInfoFragment"
                 app:destination="@id/navigation_done_info" />
         </fragment>
         <fragment
-            android:id="@+id/navigation_done_info">
+            android:id="@+id/navigation_done_info"
+            android:name="io.raveerocks.downloadmanager.ui.done.DoneDownloadInfoFragment">
             <argument
                 android:name="doneDownload"
                 app:argType="io.raveerocks.downloadmanager.core.models.DoneDownload" />

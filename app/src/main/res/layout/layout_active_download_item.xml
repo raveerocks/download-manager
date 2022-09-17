@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <!-- ActiveDownload added as a variable-->
+        <variable
+            name="activeDownload"
+            type="io.raveerocks.downloadmanager.core.models.ActiveDownload" />
+    </data>
+
+    <!-- TouchableMotion Layout holds the active download item-->
+    <io.raveerocks.downloadmanager.core.views.custom.TouchableMotionLayout
+        android:id="@+id/active_download_item_container_layout"
+        style="@style/style_vertical_list_item"
+        app:layoutDescription="@xml/layout_active_download_item_scene">
+
+        <!-- Logo representing media type -->
+        <ImageView
+            android:id="@+id/download_logo"
+            style="@style/style_item_logo"
+            app:mimeType="@{activeDownload.details.mediaType}"
+            app:srcCompat="@drawable/ic_baseline_question_mark_48"
+            android:contentDescription="@string/description_media_logo" />
+
+        <!-- Active download title -->
+        <TextView
+            android:id="@+id/title"
+            style="@style/style_item_title"
+            android:text="@{activeDownload.title}"
+            app:layout_constraintStart_toEndOf="@+id/download_logo"
+            app:layout_constraintTop_toTopOf="@+id/download_logo"
+            tools:text="Title" />
+
+        <!-- Active download domain -->
+        <TextView
+            android:id="@+id/domain"
+            style="@style/style_item_domain"
+            app:downloadingFrom="@{activeDownload.domain}"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="Domain" />
+
+        <!-- Active download status -->
+        <ImageView
+            android:id="@+id/status_image"
+            style="@style/style_item_logo"
+            app:progress="@{activeDownload.details}"
+            tools:srcCompat="@drawable/ic_baseline_refresh_48" />
+
+        <!-- Progress Pie chart  -->
+        <io.raveerocks.downloadmanager.core.views.custom.ProgressPieChartView
+            android:id="@+id/progress"
+            android:layout_width="@dimen/progress_pie_size"
+            android:layout_height="@dimen/progress_pie_size"
+            app:completedSectorColor="#9dd866"
+            app:interactive="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:progress="@{activeDownload.details}"
+            app:showLegend="false"
+            app:showTitle="false" />
+
+        <!-- Cancel button to cancel the download -->
+        <io.raveerocks.downloadmanager.core.views.custom.ClickableTextView
+            android:id="@+id/cancel_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_cancel"
+            android:textAlignment="center"
+            app:drawableTopCompat="@drawable/ic_baseline_cancel_48" />
+
+    </io.raveerocks.downloadmanager.core.views.custom.TouchableMotionLayout>
+
+</layout>

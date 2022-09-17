@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- DoneDownload added as a variable-->
+        <variable
+            name="doneDownload"
+            type="io.raveerocks.downloadmanager.core.models.DoneDownload" />
+    </data>
+
+    <!-- ConstraintLayout Layout is holding the Fragment -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- ScrollView for content overflow -->
+        <ScrollView
+            android:id="@+id/container_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/margin_medium"
+            android:paddingEnd="@dimen/margin_medium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Linear Layout is holding the download info -->
+            <LinearLayout
+                android:id="@+id/container_linear_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Logo representing media type -->
+                <ImageView
+                    android:id="@+id/media_logo"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/info_logo_height"
+                    android:adjustViewBounds="true"
+                    app:mimeType="@{doneDownload.mediaType}"
+                    tools:srcCompat="@drawable/ic_baseline_library_music_48"
+                    android:contentDescription="@string/description_media_logo" />
+
+                <!-- Title label -->
+                <TextView
+                    android:id="@+id/title_label_text_view"
+                    style="@style/style_item_label_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_title" />
+
+                <!-- Title -->
+                <TextView
+                    android:id="@+id/title_text_view"
+                    style="@style/style_item_label_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{doneDownload.title}"
+                    tools:text="My Music File" />
+
+                <!-- Link label -->
+                <TextView
+                    android:id="@+id/link_label_text_view"
+                    style="@style/style_item_label_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_link" />
+
+                <!-- Link -->
+                <TextView
+                    android:id="@+id/link_text_view"
+                    style="@style/style_item_label_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autoLink="web"
+                    android:linksClickable="true"
+                    android:text="@{doneDownload.link}"
+                    tools:text="amazon.com" />
+
+                <!-- Location label -->
+                <TextView
+                    android:id="@+id/location_label_text_view"
+                    style="@style/style_item_label_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_location" />
+
+                <!-- Location -->
+                <TextView
+                    android:id="@+id/location_text_view"
+                    style="@style/style_item_label_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{doneDownload.location}"
+                    tools:text="/android/emulator/0" />
+
+                <!-- Size label -->
+                <TextView
+                    android:id="@+id/size_label_text_view"
+                    style="@style/style_item_label_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_size" />
+
+                <!-- Size  -->
+                <TextView
+                    android:id="@+id/size_text_view"
+                    style="@style/style_item_label_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:fileSize="@{doneDownload.totalSizeBytes}"
+                    tools:text="4.54 MB" />
+
+                <!-- Downloaded At label -->
+                <TextView
+                    android:id="@+id/downloaded_at_label_text_view"
+                    style="@style/style_item_label_large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/label_downloaded_at" />
+
+                <!-- Downloaded At -->
+                <TextView
+                    android:id="@+id/downloaded_at_text_view"
+                    style="@style/style_item_label_small"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:downloadedAt="@{doneDownload.downloadedAt}"
+                    tools:text="12 Aug 2022" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

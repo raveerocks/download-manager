@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Data binding added -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!-- DoneViewModel added as a variable-->
+        <variable
+            name="viewModel"
+            type="io.raveerocks.downloadmanager.ui.done.DoneViewModel" />
+        <!-- Imported MediaType as a variable-->
+        <import type="io.raveerocks.downloadmanager.core.types.MediaType" />
+    </data>
+
+    <!-- Coordinator Layout is holding the Fragment -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- AppBar Layout is holding the Motion Layout -->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/chip_group_container_app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <!-- Motion Layout added to coordinate scroll -->
+            <androidx.constraintlayout.motion.widget.MotionLayout
+                android:id="@+id/chip_group_container_motion_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/colorPrimaryVariant"
+                android:minHeight="60dp"
+                app:layoutDescription="@xml/fragment_done_scene"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap">
+
+                <!-- Constraint Layout added to position chip group -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/chip_group_container_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp">
+
+                    <!-- Chip Group to filter downloads by media type -->
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/filter_download_chip_group"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <!-- Chip to filter audio files -->
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/audio_chip"
+                            style="@style/style_default_download_chip"
+                            android:onCheckedChanged="@{(button, isChecked)->viewModel.filterDownloads(isChecked,MediaType.AUDIO)}"
+                            app:chipIcon="@drawable/ic_baseline_library_music_48"
+                            app:chipIconEnabled="true"
+                            tools:checked="true" />
+
+                        <!-- Chip to filter image files -->
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/image_chip"
+                            style="@style/style_default_download_chip"
+                            android:onCheckedChanged="@{(button, isChecked)->viewModel.filterDownloads(isChecked,MediaType.IMAGE)}"
+                            app:chipIcon="@drawable/ic_baseline_photo_library_48"
+                            app:chipIconEnabled="true" />
+
+                        <!-- Chip to filter video files -->
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/video_chip"
+                            style="@style/style_default_download_chip"
+                            android:onCheckedChanged="@{(button, isChecked)->viewModel.filterDownloads(isChecked,MediaType.VIDEO)}"
+                            app:chipIcon="@drawable/ic_baseline_video_library_48"
+                            app:chipIconEnabled="true" />
+
+                        <!-- Chip to filter text files -->
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/text_chip"
+                            style="@style/style_default_download_chip"
+                            android:onCheckedChanged="@{(button, isChecked)->viewModel.filterDownloads(isChecked,MediaType.TEXT)}"
+                            app:chipIcon="@drawable/ic_baseline_text_library_48"
+                            app:chipIconEnabled="true" />
+
+                        <!-- Chip to filter other files -->
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/others_chip"
+                            style="@style/style_default_download_chip"
+                            android:onCheckedChanged="@{(button, isChecked)->viewModel.filterDownloads(isChecked,MediaType.OTHER)}"
+                            app:chipIcon="@drawable/ic_baseline_question_mark_48"
+                            app:chipIconEnabled="true" />
+
+                    </com.google.android.material.chip.ChipGroup>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.motion.widget.MotionLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- SwipeRefresh Layout holding ClockedRecyclerView -->
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/done_recycler_view_container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="@dimen/padding_small"
+            android:paddingEnd="@dimen/padding_small"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <!-- ClockedRecyclerView containing DoneDownload entries ticks every second (1000ms) -->
+            <io.raveerocks.downloadmanager.core.views.custom.ClockedRecyclerView
+                android:id="@+id/done_recycler_view"
+                style="@style/style_vertical_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:tickInterval="1000" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- Constraint Layout holding Placeholder for empty downloads -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/no_downloads_container_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Placeholder for empty downloads -->
+            <TextView
+                android:id="@+id/no_downloads"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/message_no_downloads_found"
+                android:visibility="gone"
+                app:drawableBottomCompat="@drawable/ic_baseline_youtube_searched_for_48"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
