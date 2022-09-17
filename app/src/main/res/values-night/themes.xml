@@ -1,16 +1,45 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Theme.DownloadManager" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_200</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimary">@color/dark_sky_blue</item>
+        <item name="colorPrimaryVariant">?attr/colorPrimary</item>
         <item name="colorOnPrimary">@color/black</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/teal_200</item>
-        <item name="colorSecondaryVariant">@color/teal_200</item>
+        <item name="colorSecondary">@color/timber_wolf</item>
         <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+        <item name="fontFamily">@font/bubblegum_sans</item>
     </style>
+
+    <style name="Theme.DashBoard.PieChart.DownloadChart">
+        <item name="activeSectorColor">#b0df83</item>
+        <item name="doneSectorColor">#bd9cc5</item>
+        <item name="failedSectorColor">#e7634f</item>
+        <item name="pieSectorLabelColor">@color/black</item>
+        <item name="legendLabelColor">@color/white</item>
+    </style>
+
+    <style name="Theme.DashBoard.PieChart.MediaChart">
+        <item name="audioColor">#5ccffa</item>
+        <item name="imageColor">#b0df83</item>
+        <item name="videoColor">#bd9cc5</item>
+        <item name="textColor">#ffef88</item>
+        <item name="otherColor">#ffbe58</item>
+        <item name="pieSectorLabelColor">@color/black</item>
+        <item name="legendLabelColor">@color/white</item>
+    </style>
+
+    <style name="Theme.DashBoard.BarChart.DownloadChart">
+        <item name="activeSectorColor">#b0df83</item>
+        <item name="doneSectorColor">#bd9cc5</item>
+        <item name="failedSectorColor">#e7634f</item>
+    </style>
+
+    <style name="Theme.DashBoard.BarChart.MediaChart">
+        <item name="audioColor">#5ccffa</item>
+        <item name="imageColor">#b0df83</item>
+        <item name="videoColor">#bd9cc5</item>
+        <item name="textColor">#ffef88</item>
+        <item name="otherColor">#ffbe58</item>
+    </style>
+
 </resources>
