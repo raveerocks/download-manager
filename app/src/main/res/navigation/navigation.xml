@@ -2,5 +2,36 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_navigation">
+    android:id="@+id/root_navigation"
+    app:startDestination="@+id/done_navigation">
+
+    <fragment
+        android:id="@+id/navigation_dashboard"/>
+
+    <fragment
+        android:id="@+id/navigation_active"/>
+
+    <fragment
+        android:id="@+id/navigation_failed"/>
+
+    <fragment
+        android:id="@+id/navigation_settings"/>
+
+    <navigation
+        android:id="@+id/done_navigation"
+        app:startDestination="@id/navigation_done">
+        <fragment
+            android:id="@+id/navigation_done">
+            <action
+                android:id="@+id/action_navigation_done_to_doneDownloadInfoFragment"
+                app:destination="@id/navigation_done_info" />
+        </fragment>
+        <fragment
+            android:id="@+id/navigation_done_info">
+            <argument
+                android:name="doneDownload"
+                app:argType="io.raveerocks.downloadmanager.core.models.DoneDownload" />
+        </fragment>
+    </navigation>
+
 </navigation>
