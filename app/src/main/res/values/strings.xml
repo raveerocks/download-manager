@@ -1,3 +1,121 @@
 <resources>
+
+    <!-- App -->
     <string name="app_name">Download Manager</string>
+
+    <!-- Custom Views -->
+    <string name="default_bar_chart_title">Bar Chart</string>
+    <string name="default_pie_chart_title">Pie Chart</string>
+
+    <string name="label_active">Active</string>
+    <string name="label_done">Done</string>
+    <string name="label_failed">Failed</string>
+    <string name="label_file">File</string>
+    <string name="label_files">Files</string>
+
+
+    <string name="label_audio">Audio</string>
+    <string name="label_image">Image</string>
+    <string name="label_video">Video</string>
+    <string name="label_text">Text</string>
+    <string name="label_other">Other</string>
+
+    <!-- Bottom Nav Bar Titles -->
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_active">Active</string>
+    <string name="title_done">Done</string>
+    <string name="title_failed">Failed</string>
+    <string name="title_settings">Settings</string>
+
+
+    <!-- Add Download Fragment -->
+    <string name="label_title">Title</string>
+    <string name="message_title_cannot_be_empty">Title Cannot be empty</string>
+    <string name="label_url">URL</string>
+    <string name="message_invalid_link">Invalid Link</string>
+    <string name="label_invalid_resource">Not a downloadable resource</string>
+    <string name="label_required">Required</string>
+    <string name="label_download">Download</string>
+    <string name="message_failed_adding_download">"Failed adding download."</string>
+
+    <!-- Dashboard -->
+    <string name="message_no_downloads_found">No Downloads Found</string>
+    <string name="title_download_stats">Download Stats</string>
+    <string name="title_media_stats">Media Stats</string>
+
+    <!-- Active -->
+    <string name="message_no_active_downloads">No Active Downloads</string>
+    <string name="label_downloading_from_format">Downloading from %s</string>
+    <string name="label_cancel">Cancel</string>
+    <string name="message_download_canceled">Download canceled.</string>
+
+
+    <!-- Done -->
+    <string name="label_downloaded_from_format">Downloaded from %s</string>
+    <string name="label_delete">Delete</string>
+    <string name="message_file_open_failed">Can\'t open the file.</string>
+
+
+    <!-- Done Info -->
+    <string name="label_source">Source</string>
+    <string name="label_link">Link</string>
+    <string name="label_location">Location</string>
+    <string name="label_size">Size</string>
+    <string name="label_downloaded_at">Downloaded At</string>
+
+
+    <!-- Done Overflow Menu -->
+    <string name="menu_label_title">Title</string>
+    <string name="menu_label_from">From</string>
+    <string name="menu_label_size">Size</string>
+    <string name="menu_label_created_at">CreatedAt</string>
+
+
+    <!-- Failed -->
+    <string name="message_no_failed_downloads">No Failed Downloads</string>
+    <string name="message_retrying_download">Retrying download.</string>
+    <string name="message_reason_file_error">Failed due to file error.</string>
+    <string name="message_reason_network_error">Failed due to network connection issues.</string>
+    <string name="message_reason_memory_error">Failed due to memory issues.</string>
+    <string name="message_reason_cannot_resume">Cannot resume download.</string>
+    <string name="message_reason_duplicate">Duplicate file found.</string>
+    <string name="message_reason_resource_request_failed">Resource request failed</string>
+    <string name="message_reason_unknown">Some unknown failure occurred.</string>
+
+    <!-- Settings -->
+    <string name="title_download_settings">Download Settings</string>
+    <string name="title_dashboard_settings">Dashboard Settings</string>
+    <string name="label_download_over_wi_fi_only">Download over Wi-Fi only</string>
+    <string name="label_allow_download_while_roaming">Allow download while roaming</string>
+    <string name="label_download_while_charging_only">Download while on charging only</string>
+    <string name="label_download_only_when_idle">Download only when idle</string>
+    <string name="label_make_downloads_public">Make downloads public</string>
+    <string name="label_limit">Limit</string>
+    <string name="label_save">Save</string>
+    <string name="label_reset">Reset</string>
+    <string name="label_days">Days</string>
+    <string name="message_relaunch">Relaunching with new settings</string>
+
+    <!-- Notification -->
+    <string name="channel_name_download_completion">Download Completion</string>
+    <string name="channel_name_download_failure">Download Failure</string>
+    <string name="channel_description_for_download_completion">"Notifies when a download finishes."</string>
+    <string name="channel_description_for_download_failure">"Notifies when a download fails."</string>
+    <string name="notification_title_file_download_done">File download Completed</string>
+    <string name="notification_title_file_download_failed">File download failed</string>
+    <string name="notification_action_label_retry">Retry</string>
+    <string name="notification_action_label_delete">Delete</string>
+
+    <string name="description_second">s</string>
+    <string name="description_minute">m</string>
+    <string name="description_hour">h</string>
+    <string name="description_day">d</string>
+    <string name="description_week">d</string>
+    <string name="description_month">M</string>
+    <string name="description_now">now</string>
+    <string name="label_time_ago_format">%s %2s</string>
+
+    <string name="description_add_download">Add Download</string>
+    <string name="description_media_logo">Media Type Logo</string>
+
 </resources>
